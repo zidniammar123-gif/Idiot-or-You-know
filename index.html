@@ -66,6 +66,26 @@
             padding-top: 20px;
         }
 
+        .comment-toggle {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 12px;
+            background-color: #95a5a6;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .comment-toggle:hover {
+            background-color: #7f8c8d;
+        }
+
+        #comment-content {
+            display: block;
+        }
+
         .comment-form {
             display: flex;
             flex-direction: column;
@@ -116,53 +136,84 @@
             border-left: 4px solid #3498db;
         }
 
-        /* REPORT TERPISAH */
-        .report-section {
-            margin-top: 25px;
-            padding-top: 20px;
-            border-top: 1px solid #ddd;
-            text-align: left;
-        }
-
+        /* TOMBOL REPORT SAMPING */
         .report-button {
-            width: 100%;
-            padding: 12px;
+            position: fixed;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
             background-color: #7f8c8d;
             color: white;
             border: none;
-            border-radius: 5px;
-            font-size: 15px;
+            padding: 12px 10px;
+            border-radius: 8px 0 0 8px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .report-button:hover {
             background-color: #636e72;
         }
 
-        .admin-box {
-            display: none;
-            margin-top: 15px;
-            background: #f8fafc;
-            border: 1px solid #cbd5e1;
-            border-radius: 7px;
-            padding: 12px;
+        /* PANEL REPORT DARI SAMPING */
+        .admin-panel {
+            position: fixed;
+            top: 0;
+            right: -380px;
+            width: 340px;
+            max-width: 85%;
+            height: 100%;
+            background: white;
+            box-shadow: -4px 0 12px rgba(0,0,0,0.2);
+            z-index: 2000;
+            transition: right 0.3s ease;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+        }
+
+        .admin-panel.open {
+            right: 0;
+        }
+
+        /* KOTAK X */
+        .admin-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 5px;
+            background-color: #e74c3c;
+            color: white;
+            font-size: 24px;
+            line-height: 30px;
+            cursor: pointer;
+        }
+
+        .admin-close:hover {
+            background-color: #c0392b;
         }
 
         .admin-title {
             font-weight: bold;
             color: #2c3e50;
-            margin-bottom: 10px;
+            font-size: 20px;
+            margin: 10px 45px 15px 0;
         }
 
         .admin-chat {
-            background: white;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
             border-radius: 6px;
-            padding: 10px;
-            margin-bottom: 10px;
+            padding: 12px;
+            margin-bottom: 12px;
             font-size: 14px;
-            line-height: 1.4;
-            border-left: 4px solid #34495e;
+            line-height: 1.5;
         }
 
         .admin-input {
@@ -184,6 +235,10 @@
             border-radius: 5px;
             font-weight: bold;
             cursor: pointer;
+        }
+
+        .admin-send:hover {
+            background-color: #2c3e50;
         }
 
         .disclaimer-admin {
@@ -226,66 +281,86 @@
         Cepat Klik
     </button>
 
+
     <div class="comments-section">
 
         <h3>Komentar Terbaru</h3>
 
-        <div class="comment-form">
-            <input
-                type="email"
-                id="user-email"
-                placeholder="Masukkan Email Anda (contoh: budi@gmail.com)"
-                required
-            >
-
-            <input
-                type="text"
-                id="user-comment"
-                placeholder="Tulis komentar Anda..."
-            >
-
-            <button onclick="kirimKomentarManual()">
-                Kirim Komentar
-            </button>
-        </div>
-
-        <div id="comment-box"></div>
-
-    </div>
-
-
-    <!-- REPORT TERPISAH -->
-    <div class="report-section">
-
-        <button class="report-button" onclick="bukaAdmin()">
-            💬 Report / Bicara dengan Admin
+        <!-- TOMBOL TUTUP / BUKA KOMENTAR -->
+        <button
+            class="comment-toggle"
+            id="comment-toggle"
+            onclick="toggleKomentar()">
+            Tutup Komentar
         </button>
 
-        <div class="admin-box" id="admin-box">
+        <div id="comment-content">
 
-            <div class="admin-title">
-                👤 [ADMIN SIMULASI]
+            <div class="comment-form">
+
+                <input
+                    type="email"
+                    id="user-email"
+                    placeholder="Masukkan Email Anda (contoh: budi@gmail.com)"
+                    required
+                >
+
+                <input
+                    type="text"
+                    id="user-comment"
+                    placeholder="Tulis komentar Anda..."
+                >
+
+                <button onclick="kirimKomentarManual()">
+                    Kirim Komentar
+                </button>
+
             </div>
 
-            <div class="admin-chat" id="admin-chat">
-                Halo! Ini ruang komunikasi admin dalam simulasi.
-                Silakan tulis pesan atau pertanyaan Anda.
+            <div id="comment-box">
+                <!-- Komentar otomatis & manual muncul di sini -->
             </div>
-
-            <input
-                type="text"
-                id="admin-input"
-                class="admin-input"
-                placeholder="Tulis pesan ke admin..."
-            >
-
-            <button class="admin-send" onclick="kirimKeAdmin()">
-                Kirim ke Admin
-            </button>
 
         </div>
 
     </div>
+
+</div>
+
+
+<!-- TOMBOL REPORT DI SAMPING -->
+<button class="report-button" onclick="bukaAdmin()">
+    💬 Admin
+</button>
+
+
+<!-- PANEL REPORT / ADMIN -->
+<div class="admin-panel" id="admin-panel">
+
+    <!-- KOTAK X -->
+    <button class="admin-close" onclick="tutupAdmin()">
+        ×
+    </button>
+
+    <div class="admin-title">
+        👤 [ADMIN SIMULASI]
+    </div>
+
+    <div class="admin-chat" id="admin-chat">
+        Halo! Ini ruang komunikasi admin dalam simulasi.
+        Silakan tulis pesan atau pertanyaan Anda.
+    </div>
+
+    <input
+        type="text"
+        id="admin-input"
+        class="admin-input"
+        placeholder="Tulis pesan ke admin..."
+    >
+
+    <button class="admin-send" onclick="kirimKeAdmin()">
+        Kirim ke Admin
+    </button>
 
 </div>
 
@@ -342,15 +417,25 @@
 
     function tambahKomentarAcak() {
 
-        const commentBox = document.getElementById('comment-box');
+        const commentBox =
+            document.getElementById('comment-box');
 
         const namaAcak =
-            daftarNama[Math.floor(Math.random() * daftarNama.length)];
+            daftarNama[
+                Math.floor(
+                    Math.random() * daftarNama.length
+                )
+            ];
 
         const teksAcak =
-            daftarKomentar[Math.floor(Math.random() * daftarKomentar.length)];
+            daftarKomentar[
+                Math.floor(
+                    Math.random() * daftarKomentar.length
+                )
+            ];
 
-        const elemenKomentar = document.createElement('div');
+        const elemenKomentar =
+            document.createElement('div');
 
         elemenKomentar.className = 'comment';
 
@@ -374,8 +459,11 @@
         const commentInput =
             document.getElementById('user-comment');
 
-        const email = emailInput.value.trim();
-        const text = commentInput.value.trim();
+        const email =
+            emailInput.value.trim();
+
+        const text =
+            commentInput.value.trim();
 
         if (email === "" || text === "") {
 
@@ -386,7 +474,8 @@
             return;
         }
 
-        let namaUser = email.split('@')[0];
+        let namaUser =
+            email.split('@')[0];
 
         namaUser =
             namaUser
@@ -399,9 +488,11 @@
         const elemenKomentarUser =
             document.createElement('div');
 
-        elemenKomentarUser.className = 'comment';
+        elemenKomentarUser.className =
+            'comment';
 
-        elemenKomentarUser.style.borderLeftColor = '#34495e';
+        elemenKomentarUser.style.borderLeftColor =
+            '#34495e';
 
         elemenKomentarUser.innerHTML =
             `<strong>@${namaUser}:</strong> ${text}`;
@@ -415,7 +506,8 @@
 
         batasiJumlahKomentar();
 
-        const textLower = text.toLowerCase();
+        const textLower =
+            text.toLowerCase();
 
         const kataKunciNegatif = [
             'hoax',
@@ -432,7 +524,6 @@
                 kata => textLower.includes(kata)
             );
 
-
         const kataKunciHarapan = [
             'bismillah',
             'semoga',
@@ -447,7 +538,6 @@
             kataKunciHarapan.some(
                 kata => textLower.includes(kata)
             );
-
 
         if (mengandungNegatif) {
 
@@ -466,7 +556,6 @@
             );
         }
 
-        // BALASAN ADMIN SIMULASI
         balasanAdminDariKomentar(text);
     }
 
@@ -531,24 +620,59 @@
 
 
     // ==============================
-    // REPORT / ADMIN SIMULASI
+    // BUKA / TUTUP KOMENTAR
+    // ==============================
+
+    function toggleKomentar() {
+
+        const content =
+            document.getElementById('comment-content');
+
+        const button =
+            document.getElementById('comment-toggle');
+
+        if (content.style.display === 'none') {
+
+            content.style.display = 'block';
+
+            button.textContent =
+                'Tutup Komentar';
+
+        } else {
+
+            content.style.display = 'none';
+
+            button.textContent =
+                'Buka Komentar';
+        }
+    }
+
+
+    // ==============================
+    // REPORT / ADMIN SAMPING
     // ==============================
 
     function bukaAdmin() {
 
-        const adminBox =
-            document.getElementById('admin-box');
+        const panel =
+            document.getElementById('admin-panel');
 
-        if (adminBox.style.display === 'block') {
-
-            adminBox.style.display = 'none';
-
-        } else {
-
-            adminBox.style.display = 'block';
-        }
+        panel.classList.add('open');
     }
 
+
+    function tutupAdmin() {
+
+        const panel =
+            document.getElementById('admin-panel');
+
+        panel.classList.remove('open');
+    }
+
+
+    // ==============================
+    // CHAT ADMIN SIMULASI
+    // ==============================
 
     function kirimKeAdmin() {
 
@@ -563,21 +687,25 @@
 
         if (text === "") {
 
-            alert("Tulis pesan terlebih dahulu!");
+            alert(
+                "Tulis pesan terlebih dahulu!"
+            );
 
             return;
         }
 
-
         const pesanUser =
             document.createElement('div');
 
-        pesanUser.style.marginTop = "10px";
+        pesanUser.style.marginTop =
+            "10px";
 
         pesanUser.innerHTML =
             `<strong>Anda:</strong> ${text}`;
 
-        chat.appendChild(pesanUser);
+        chat.appendChild(
+            pesanUser
+        );
 
         input.value = "";
 
@@ -587,14 +715,17 @@
             const balasan =
                 document.createElement('div');
 
-            balasan.style.marginTop = "10px";
-            balasan.style.paddingTop = "10px";
-            balasan.style.borderTop = "1px solid #ddd";
+            balasan.style.marginTop =
+                "10px";
 
+            balasan.style.paddingTop =
+                "10px";
+
+            balasan.style.borderTop =
+                "1px solid #ddd";
 
             const textLower =
                 text.toLowerCase();
-
 
             const kataNegatif = [
                 "hoax",
@@ -605,7 +736,6 @@
                 "fake",
                 "penipuan"
             ];
-
 
             const negatif =
                 kataNegatif.some(
@@ -651,10 +781,12 @@
                 `;
             }
 
+            chat.appendChild(
+                balasan
+            );
 
-            chat.appendChild(balasan);
-
-            chat.scrollTop = chat.scrollHeight;
+            chat.scrollTop =
+                chat.scrollHeight;
 
         }, 1000);
     }
@@ -683,7 +815,7 @@
 
 
         setTimeout(() => {
-
+            
             const commentBox =
                 document.getElementById('comment-box');
 
@@ -693,6 +825,7 @@
             adminComment.className =
                 'comment reply-comment';
 
+
             if (negatif) {
 
                 adminComment.innerHTML = `
@@ -700,9 +833,11 @@
 
                     <div class="disclaimer-admin">
                         ⚠️ Disclaimer:
+
                         komentar dan hadiah pada halaman ini
                         hanya simulasi untuk latihan mengenali
                         website yang tampak meyakinkan.
+
                         Jangan menganggap klaim hadiah ini nyata.
                     </div>
                 `;
@@ -712,10 +847,11 @@
                 adminComment.innerHTML = `
                     <strong>[ADMIN SIMULASI]:</strong>
                     Ya, tentu. Silakan mengeklaimnya
-                    <b>dalam simulasi ini</b>. Tidak ada
-                    uang nyata yang diberikan.
+                    <b>dalam simulasi ini</b>.
+                    Tidak ada uang nyata yang diberikan.
                 `;
             }
+
 
             commentBox.insertBefore(
                 adminComment,
@@ -745,4 +881,6 @@
 </script>
 
 </body>
-            </html>
+</html>
+
+     
