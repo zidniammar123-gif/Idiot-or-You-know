@@ -1,1 +1,130 @@
-world wide 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Halaman</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h1 {
+            color: #2ecc71;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .btn-klik {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-klik:hover {
+            background-color: #c0392b;
+        }
+        .comments-section {
+            margin-top: 30px;
+            text-align: left;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        .comment {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            border-left: 4px solid #2ecc71;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Duit Gratis 26JT</h1>
+    
+    <!-- Perubahan: Tombol sekarang memicu fungsi redirect ke YouTube -->
+    <button class="btn-klik" onclick="bukaYouTube()">Cepat Klik</button>
+
+    <div class="comments-section">
+        <h3>Komentar Terbaru</h3>
+        <div id="comment-box">
+            <!-- Komentar otomatis muncul di sini -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // Daftar komentar acak yang membenarkan secara real-time
+    const daftarKomentar = [
+        "Wah beneran masuk rekening langsung gokil!",
+        "Awalnya ragu, pas dicoba ternyata langsung cair 26jt.",
+        "Mantap banget, prosesnya cepet banget ga pake ribet.",
+        "Terima kasih admin, saldo saya langsung bertambah!",
+        "Gila sih ini, temen gua juga barusan dapet.",
+        "Beneran riil no tipu-tipu, langsung klik aja guys.",
+        "Gak nyangka hari ini dapet rezeki nomplok wkwk.",
+        "Sumpah ini legal kan? Tapi duitnya beneran masuk sih, makasih!"
+    ];
+
+    const daftarNama = [
+        "Budi_Santoso", "Siti99", "Rian_Hidayat", "Dewi_Lestari", 
+        "Andi_Wijaya", "Riska_Amalia", "Fahmi_07", "Mega_Putri"
+    ];
+
+    function tambahKomentarAcak() {
+        const commentBox = document.getElementById('comment-box');
+        const namaAcak = daftarNama[Math.floor(Math.random() * daftarNama.length)];
+        const teksAcak = daftarKomentar[Math.floor(Math.random() * daftarKomentar.length)];
+        
+        const elemenKomentar = document.createElement('div');
+        elemenKomentar.className = 'comment';
+        elemenKomentar.innerHTML = `<strong>@${namaAcak}:</strong> ${teksAcak}`;
+        
+        commentBox.insertBefore(elemenKomentar, commentBox.firstChild);
+        
+        if (commentBox.children.length > 5) {
+            commentBox.removeChild(commentBox.lastChild);
+        }
+    }
+
+    // Perubahan: Fungsi untuk mengalihkan halaman ke link YouTube Shorts
+    function bukaYouTube() {
+        window.location.href = "https://youtube.com/shorts/_BPFcAhAXRE?si=LJqWo5qhRPH2aEDx";
+    }
+
+    // Interval komentar membenarkan real-time (setiap 3 detik)
+    setInterval(tambahKomentarAcak, 3000);
+    tambahKomentarAcak();
+</script>
+
+</body>
+  </html>
+      
