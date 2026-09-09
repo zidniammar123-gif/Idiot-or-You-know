@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulasi Halaman</title>
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -140,14 +139,13 @@
 
 </div>
 
-<!-- DISCLAIMER YANG MUNCUL SETELAH KEMBALI -->
-<div class="disclaimer-overlay" id="disclaimer">
+<!-- POP-UP HANYA MUNCUL SETELAH KEMBALI DARI YOUTUBE -->
+<div class="disclaimer-overlay" id="disclaimerPopup">
     <div class="disclaimer-popup">
         <h2>⚠️ Disclaimer</h2>
 
         <p>
-            Halaman ini adalah simulasi untuk menunjukkan bagaimana
-            sebuah website yang tidak jelas dapat terlihat meyakinkan.
+            Halaman ini hanya simulasi. Tidak ada uang atau hadiah nyata yang diberikan.
         </p>
 
         <div class="disclaimer-buttons">
@@ -244,20 +242,23 @@ function batasiJumlahKomentar() {
     }
 }
 
+/* KLIK TOMBOL → YOUTUBE */
 function bukaYouTube() {
     sessionStorage.setItem("kembaliDariYouTube", "true");
     window.location.href = "https://youtube.com";
 }
 
+/* TUTUP DISCLAIMER */
 function tutupDisclaimer() {
-    document.getElementById("disclaimer").style.display = "none";
+    document.getElementById("disclaimerPopup").style.display = "none";
 }
 
-/* CEK SAAT KEMBALI KE WEBSITE */
+/* KEMBALI KE WEBSITE → BARU DISCLAIMER MUNCUL */
 window.addEventListener("pageshow", function () {
     if (sessionStorage.getItem("kembaliDariYouTube") === "true") {
         sessionStorage.removeItem("kembaliDariYouTube");
-        document.getElementById("disclaimer").style.display = "flex";
+
+        document.getElementById("disclaimerPopup").style.display = "flex";
     }
 });
 
