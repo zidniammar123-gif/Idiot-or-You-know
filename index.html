@@ -1,318 +1,276 @@
-<!DOCTYPE html><html lang="id">
+<!DOCTYPE html>
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulasi Halaman</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background: #f5f5f5;
             margin: 0;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
+
         .container {
+            max-width: 600px;
+            margin: auto;
             background: white;
-            padding: 30px;
+            padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 460px;
-            width: 100%;
         }
+
         h1 {
-            color: #2ecc71;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }    /* DESKRIPSI SIMULASI */
-    .deskripsi {
-        color: #555;
-        font-size: 14px;
-        line-height: 1.5;
-        margin: -5px 0 20px;
-    }
-
-    .btn-klik {
-        background-color: #e74c3c;
-        color: white;
-        border: none;
-        padding: 15px 30px;
-        font-size: 18px;
-        font-weight: bold;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background 0.2s;
-        text-decoration: none;
-        display: inline-block;
-        width: 100%;
-        box-sizing: border-box;
-    }
-    .btn-klik:hover {
-        background-color: #c0392b;
-    }
-    .comments-section {
-        margin-top: 30px;
-        text-align: left;
-        border-top: 1px solid #ddd;
-        padding-top: 20px;
-    }
-    .comment-form {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        margin-bottom: 20px;
-        background: #f8fafc;
-        padding: 12px;
-        border-radius: 6px;
-        border: 1px solid #e2e8f0;
-    }
-    .comment-form input {
-        padding: 10px;
-        border: 1px solid #cbd5e1;
-        border-radius: 5px;
-        font-size: 14px;
-    }
-    .comment-form button {
-        background-color: #3498db;
-        color: white;
-        border: none;
-        padding: 10px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 14px;
-    }
-    .comment-form button:hover {
-        background-color: #2980b9;
-    }
-    .comment {
-        background: #f9f9f9;
-        padding: 12px;
-        border-radius: 5px;
-        margin-bottom: 10px;
-        font-size: 14px;
-        border-left: 4px solid #2ecc71;
-        animation: fadeIn 0.5s ease-in-out;
-        line-height: 1.4;
-    }
-    .reply-comment {
-        background: #f0fdf4;
-        margin-left: 20px;
-        border-left: 4px solid #3498db;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-10px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* POP-UP DISCLAIMER */
-    .disclaimer-overlay {
-        display: none;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.65);
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
-        z-index: 9999;
-        box-sizing: border-box;
-    }
-
-    .disclaimer-popup {
-        background: white;
-        width: 100%;
-        max-width: 400px;
-        border-radius: 12px;
-        padding: 25px;
-        box-sizing: border-box;
-        text-align: center;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.3);
-        animation: popupMasuk 0.2s ease-out;
-    }
-
-    .disclaimer-popup h2 {
-        margin-top: 0;
-        color: #e67e22;
-    }
-
-    .disclaimer-popup p {
-        color: #555;
-        font-size: 14px;
-        line-height: 1.6;
-    }
-
-    .disclaimer-buttons {
-        display: flex;
-        gap: 10px;
-        margin-top: 20px;
-    }
-
-    .disclaimer-buttons button {
-        flex: 1;
-        border: none;
-        padding: 12px;
-        border-radius: 6px;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 14px;
-    }
-
-    .btn-paham {
-        background: #2ecc71;
-        color: white;
-    }
-
-    .btn-tidak-paham {
-        background: #e74c3c;
-        color: white;
-    }
-
-    @keyframes popupMasuk {
-        from {
-            opacity: 0;
-            transform: scale(0.9);
+            color: green;
         }
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-</style>
 
+        .deskripsi {
+            background: #fff3cd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cepat {
+            background: red;
+            color: white;
+        }
+
+        .komentar {
+            margin-top: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+
+        .comment {
+            background: #f1f1f1;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .reply {
+            margin-left: 20px;
+            background: #e8f5e9;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+
+        /* TAMBAHAN POP-UP DISCLAIMER */
+        .disclaimer-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .disclaimer-popup {
+            width: 90%;
+            max-width: 400px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .disclaimer-popup h2 {
+            margin-top: 0;
+        }
+
+        .disclaimer-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .btn-paham {
+            background: #198754;
+            color: white;
+        }
+
+        .btn-tidak-paham {
+            background: #6c757d;
+            color: white;
+        }
+    </style>
 </head>
-<body><div class="container">
-    <h1>Duit Gratis 26JT</h1><p class="deskripsi">
-    ⚠️ Ini hanya halaman simulasi untuk menunjukkan bagaimana sebuah
-    website yang tidak jelas dapat terlihat meyakinkan melalui judul,
-    tombol, dan komentar yang dibuat-buat. Tidak ada uang atau hadiah
-    nyata yang diberikan.
-</p>
 
-<button class="btn-klik" onclick="bukaDisclaimer()">Cepat Klik</button>
+<body>
 
-<div class="comments-section">
-    <h3>Komentar Terbaru</h3><div class="comment-form">
-    <input type="email" id="user-email" placeholder="Masukkan Email Anda (contoh: budi@gmail.com)" required>
-    <input type="text" id="user-comment" placeholder="Tulis komentar Anda...">
-    <button onclick="kirimKomentarManual()">Kirim Komentar</button>
+<div class="container">
+
+    <h1>Duit Gratis 26JT</h1>
+
+    <div class="deskripsi">
+        ⚠️ Disclaimer: Halaman ini hanya simulasi. Tidak ada uang atau hadiah nyata yang diberikan.
+    </div>
+
+    <br>
+
+    <button class="cepat" onclick="bukaDisclaimer()">Cepat Klik</button>
+
+    <div class="komentar">
+        <h2>Komentar</h2>
+
+        <input type="email" id="email" placeholder="Email">
+        <input type="text" id="komentarInput" placeholder="Tulis komentar...">
+
+        <button onclick="kirimKomentarManual()">Kirim</button>
+
+        <div id="daftarKomentar"></div>
+    </div>
+
 </div>
 
-<div id="comment-box">
-</div>
-
-</div></div><!-- POP-UP DISCLAIMER --><div class="disclaimer-overlay" id="disclaimer">
+<!-- POP-UP DISCLAIMER -->
+<div class="disclaimer-overlay" id="disclaimer">
     <div class="disclaimer-popup">
-        <h2>⚠️ Disclaimer</h2>    <p>
-        Halaman ini adalah <strong>simulasi</strong>.
-        Judul, tombol, dan komentar yang terlihat di halaman
-        dibuat untuk menunjukkan bagaimana website yang tidak jelas
-        dapat terlihat meyakinkan.
-        <br><br>
-        Tidak ada uang atau hadiah nyata yang diberikan.
-    </p>
+        <h2>⚠️ Disclaimer</h2>
 
-    <div class="disclaimer-buttons">
-        <button class="btn-tidak-paham" onclick="tutupDisclaimer()">
-            Gak ngerti
-        </button>
+        <p>
+            Halaman ini adalah simulasi untuk menunjukkan bagaimana
+            sebuah website yang tidak jelas dapat terlihat meyakinkan.
+        </p>
 
-        <button class="btn-paham" onclick="lanjutYouTube()">
-            Paham
-        </button>
+        <div class="disclaimer-buttons">
+            <button class="btn-tidak-paham" onclick="tutupDisclaimer()">
+                Gak ngerti
+            </button>
+
+            <button class="btn-paham" onclick="lanjutYouTube()">
+                Paham
+            </button>
+        </div>
     </div>
 </div>
 
-</div><script>
-    // Komentar berkala dari bot umum
-    const daftarKomentar = [
+<script>
+
+function tambahKomentarAcak() {
+    const komentar = [
         "Wah beneran masuk rekening langsung gokil!",
-        "Awalnya ragu, pas dicoba ternyata langsung cair 26jt.",
-        "Mantap banget, prosesnya cepet banget ga pake ribet.",
-        "Terima kasih admin, saldo saya langsung bertambah!",
-        "Gila sih ini, temen gua juga barusan dapet.",
-        "Beneran riil no tipu-tipu, langsung klik aja guys.",
-        "Gak nyangka hari ini dapet rezeki nomplok wkwk.",
-        "Sumpah ini legal kan? Tapi duitnya beneran masuk sih, makasih!",
-        "Anjay dapet beneran dong, untung iseng nyoba pas lewat fyp",
-        "Alhamdulillah bisa buat bayar kontrakan wkwk mantap maseh"
+        "Serius bisa dapet 26jt?",
+        "Saya udah coba katanya langsung cair.",
+        "Gila kalau beneran dapet segini.",
+        "Ada yang udah berhasil belum?",
+        "Tadi saya coba, langsung cair 26jt!"
     ];
 
-    const daftarNama = [
-        "budi_santoso", "siti99", "rian_hidayat92", "dewi.lestari",
-        "andiwijaya", "riska_amalia", "fahmi_07", "megaputri_id", "eko_purnomo", "nina_marina"
+    const nama = [
+        "Andi",
+        "Budi",
+        "Rizky",
+        "Dimas",
+        "Fajar",
+        "Agus"
     ];
 
-    const daftarBalasanMembela = [
-        "Yeee dibilang hoax, lu aja kali yang telat klik atau ga ngikutin caranya bener-bener.",
-        "Lah palsu gimana? Temen gua sendiri udah cair masuk ke e-wallet kok.",
-        "Syirik aja lu bang, mending buruan coba sendiri daripada rugi ga kebagian.",
-        "Bukan hoax bro, ini emang event resmi terbatas makanya buruan klik.",
-        "Gua juga awalnya mikir gitu, pas nekat nyoba malah beneran cair wkwk. Coba dulu makanya.",
-        "Kebanyakan mikir lu wkwk keburu hangus ntar slotnya baru nangis.",
-        "Gak usah dengerin yang billing palsu guys, gua barusan cek m-banking udah landing kok."
-    ];
+    const index = Math.floor(Math.random() * komentar.length);
 
-    const daftarBalasanMenyemangati = [
-        "Aamiin bang, lgsg klik aja tombol di atas mumpung kuotanya masih ada!",
-        "Pasti berhasil kak! Yg penting ikutin jalurnya aja jgn ampe kelewatan.",
-        "Gas terus bro moga lancar cairnya, rezeki ga kemana wkwk",
-        "Semangattt! Gua kemaren doa gitu juga alhamdulillah tembus langsung.",
-        "Bismillah moga dapet ya gan, jgn lupa buruan di-klik tombol merahnya.",
-        "Semoga beruntung bro, asalkan gercep pasti kebagian kok!",
-        "Aamiinn ya Allah, gas keun mumpung masih anget websitenya."
-    ];
+    const div = document.createElement("div");
+    div.className = "comment";
 
-    function tambahKomentarAcak() {
-        const commentBox = document.getElementById('comment-box');
-        const namaAcak = daftarNama[Math.floor(Math.random() * daftarNama.length)];
-        const teksAcak = daftarKomentar[Math.floor(Math.random() * daftarKomentar.length)];
+    div.innerHTML = `
+        <strong>${nama[index]}</strong><br>
+        ${komentar[index]}
+    `;
 
-        const elemenKomentar = document.createElement('div');
-        elemenKomentar.className = 'comment';
-        elemenKomentar.innerHTML = `<strong>@${namaAcak}:</strong> ${teksAcak}`;
+    document.getElementById("daftarKomentar").appendChild(div);
 
-        commentBox.insertBefore(elemenKomentar, commentBox.firstChild);
-        batasiJumlahKomentar();
+    setTimeout(() => {
+        prosesBalasanOtomatis(div);
+    }, 1000 + Math.random() * 2000);
+}
+
+function kirimKomentarManual() {
+    const email = document.getElementById("email").value;
+    const komentar = document.getElementById("komentarInput").value;
+
+    if (!email || !komentar) return;
+
+    const div = document.createElement("div");
+    div.className = "comment";
+
+    div.innerHTML = `
+        <strong>${email}</strong><br>
+        ${komentar}
+    `;
+
+    document.getElementById("daftarKomentar").appendChild(div);
+
+    document.getElementById("email").value = "";
+    document.getElementById("komentarInput").value = "";
+
+    setTimeout(() => {
+        prosesBalasanOtomatis(div);
+    }, 1000);
+}
+
+function prosesBalasanOtomatis(div) {
+    const balasan = document.createElement("div");
+    balasan.className = "reply";
+
+    balasan.innerHTML = `
+        <strong>Admin</strong><br>
+        Silakan ikuti langkah berikutnya.
+    `;
+
+    div.appendChild(balasan);
+}
+
+function batasiJumlahKomentar() {
+    const daftar = document.getElementById("daftarKomentar");
+
+    while (daftar.children.length > 10) {
+        daftar.removeChild(daftar.firstChild);
     }
+}
 
-    function kirimKomentarManual() {
-        const emailInput = document.getElementById('user-email');
-        const commentInput = document.getElementById('user-comment');
+function bukaYouTube() {
+    window.location.href = "https://youtube.com";
+}
 
-        const email = emailInput.value.trim();
-        const text = commentInput.value.trim();
+/* PEMICU POP-UP */
+function bukaDisclaimer() {
+    document.getElementById("disclaimer").style.display = "flex";
+}
 
-        if (email === "" || text === "") {
-            alert("Harap isi email dan komentar terlebih dahulu!");
-            return;
-        }
+function tutupDisclaimer() {
+    document.getElementById("disclaimer").style.display = "none";
+}
 
-        let namaUser = email.split('@')[0];
-        namaUser = namaUser.replace(/[^a-zA-Z0-9_\.]/g, '').substring(0, 15);
+function lanjutYouTube() {
+    window.location.href = "https://youtube.com";
+}
 
-        const commentBox = document.getElementById('comment-box');
+/* KOMENTAR OTOMATIS */
+setInterval(() => {
+    tambahKomentarAcak();
+    batasiJumlahKomentar();
+}, 4000);
 
-        const elemenKomentarUser = document.createElement('div');
-        elemenKomentarUser.className = 'comment';
-        elemenKomentarUser.style.borderLeftColor = '#34495e';
-        elemenKomentarUser.innerHTML = `<strong>@${namaUser}:</strong> ${text}`;
+</script>
 
-        commentBox.insertBefore(elemenKomentarUser, commentBox.firstChild);
-        commentInput.value = "";
-        batasiJumlahKomentar();
-
-        const textLower = text.toLowerCase();
-
-        const kataKunciNegatif = ['hoax', 'palsu', 'bohong', 'tipu', 'scam', 'fake', 'boong'];
-        const mengandungNegatif = kataKunciNegatif.some(kata => textLower.includes(kata));
-
-        const kataKunciHarapan = ['bismillah', 'semoga', 'plis', 'berhasil', 'moga', 'mudah-mudahan', 'wish'];
-        const mengandungHarapan = kataKunciHarapan.some(kata => textLower.includes(kata));
-
-        if (mengandungNegatif) {
-            prosesBalasanOtomatis(namaUser, elemenKomentarUser, daftarBalasanMembela);
+</body>
+</html>   prosesBalasanOtomatis(namaUser, elemenKomentarUser, daftarBalasanMembela);
         } else if (mengandungHarapan) {
             prosesBalasanOtomatis(namaUser, elemenKomentarUser, daftarBalasanMenyemangati);
         }
