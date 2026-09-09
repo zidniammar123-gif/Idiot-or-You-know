@@ -69,7 +69,7 @@
             border-radius: 5px;
         }
 
-        /* TAMBAHAN POP-UP DISCLAIMER */
+        /* POP-UP DISCLAIMER */
         .disclaimer-overlay {
             display: none;
             position: fixed;
@@ -125,7 +125,7 @@
 
     <br>
 
-    <button class="cepat" onclick="bukaDisclaimer()">Cepat Klik</button>
+    <button class="cepat" onclick="bukaYouTube()">Cepat Klik</button>
 
     <div class="komentar">
         <h2>Komentar</h2>
@@ -140,7 +140,7 @@
 
 </div>
 
-<!-- POP-UP DISCLAIMER -->
+<!-- DISCLAIMER YANG MUNCUL SETELAH KEMBALI -->
 <div class="disclaimer-overlay" id="disclaimer">
     <div class="disclaimer-popup">
         <h2>⚠️ Disclaimer</h2>
@@ -155,7 +155,7 @@
                 Gak ngerti
             </button>
 
-            <button class="btn-paham" onclick="lanjutYouTube()">
+            <button class="btn-paham" onclick="tutupDisclaimer()">
                 Paham
             </button>
         </div>
@@ -245,21 +245,21 @@ function batasiJumlahKomentar() {
 }
 
 function bukaYouTube() {
+    sessionStorage.setItem("kembaliDariYouTube", "true");
     window.location.href = "https://youtube.com";
-}
-
-/* PEMICU POP-UP */
-function bukaDisclaimer() {
-    document.getElementById("disclaimer").style.display = "flex";
 }
 
 function tutupDisclaimer() {
     document.getElementById("disclaimer").style.display = "none";
 }
 
-function lanjutYouTube() {
-    window.location.href = "https://youtube.com";
-}
+/* CEK SAAT KEMBALI KE WEBSITE */
+window.addEventListener("pageshow", function () {
+    if (sessionStorage.getItem("kembaliDariYouTube") === "true") {
+        sessionStorage.removeItem("kembaliDariYouTube");
+        document.getElementById("disclaimer").style.display = "flex";
+    }
+});
 
 /* KOMENTAR OTOMATIS */
 setInterval(() => {
@@ -270,50 +270,4 @@ setInterval(() => {
 </script>
 
 </body>
-</html>   prosesBalasanOtomatis(namaUser, elemenKomentarUser, daftarBalasanMembela);
-        } else if (mengandungHarapan) {
-            prosesBalasanOtomatis(namaUser, elemenKomentarUser, daftarBalasanMenyemangati);
-        }
-    }
-
-    function prosesBalasanOtomatis(namaTarget, elemenTarget, kumpulanPesan) {
-        setTimeout(() => {
-            const commentBox = document.getElementById('comment-box');
-            const namaPembas = daftarNama[Math.floor(Math.random() * daftarNama.length)];
-            const pesanAcak = kumpulanPesan[Math.floor(Math.random() * kumpulanPesan.length)];
-
-            const elemenBalasan = document.createElement('div');
-            elemenBalasan.className = 'comment reply-comment';
-            elemenBalasan.innerHTML = `<strong>@${namaPembas} (Membalas @${namaTarget}):</strong> ${pesanAcak}`;
-
-            commentBox.insertBefore(elemenBalasan, elemenTarget);
-            batasiJumlahKomentar();
-        }, 1200);
-    }
-
-    function batasiJumlahKomentar() {
-        const commentBox = document.getElementById('comment-box');
-        if (commentBox.children.length > 12) {
-            commentBox.removeChild(commentBox.lastChild);
-        }
-    }
-
-    // Tombol "Cepat Klik" sekarang membuka disclaimer
-    function bukaDisclaimer() {
-        document.getElementById('disclaimer').style.display = 'flex';
-    }
-
-    // Pilihan "Gak ngerti" menutup pop-up dan tetap di halaman
-    function tutupDisclaimer() {
-        document.getElementById('disclaimer').style.display = 'none';
-    }
-
-    // Pilihan "Paham" melanjutkan ke YouTube
-    function lanjutYouTube() {
-        window.location.href = "https://youtube.com";
-    }
-
-    setInterval(tambahKomentarAcak, 4000);
-    tambahKomentarAcak();
-</script></body>
-            </html>
+</html>
